@@ -1,16 +1,16 @@
 package com.example.webapp.todo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 @Entity
+@Table
 public class Todo {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "todo_sequence", sequenceName = "todo_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "todo_sequence")
     private int id;
     private String username;
     @Size(min = 10, message = "Enter at least 10 characters")

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 //@Controller
 @SessionAttributes("name")
@@ -62,7 +63,7 @@ public class TodoController {
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String showUpdateTodo(@RequestParam int id, ModelMap model) {
-        Todo todo = todoService.findById(id);
+        Optional<Todo> todo = todoService.findById(id);
         model.addAttribute("todo", todo);
         return "todo";
     }
